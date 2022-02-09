@@ -3,8 +3,13 @@ package com.hb.garage;
 public class GarageApp {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		/* 
+		 * Le but du programme est de gérer les entrées/sorties de véhicules dans un garage,
+		 * ainsi que les coordonnées de leurs propriétaires afin de pouvoir les contacter
+		 * lorsque les travaux d’entretien ou de réparation sont terminés.
+		 */
 
+		
 	}
 
 }
