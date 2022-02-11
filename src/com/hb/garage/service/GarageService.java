@@ -1,25 +1,25 @@
 package com.hb.garage.service;
 
 import java.util.List;
-import java.util.Scanner;
 
 import com.hb.garage.model.Garage;
 import com.hb.garage.model.Vehicle;
 import com.hb.garage.service.action.GarageMenu;
+import com.hb.garage.utils.ConsoleManager;
 
 public class GarageService {
 
-	private Scanner req = new Scanner(System.in);
 	private GarageData data = new GarageData();
 	private Garage garage = data.getGarage();
 	
 	public void run() {
+		ConsoleManager.getInstance().printToConsole("Bienvenu chez le garage", true);
 		this.chooseAction();
 	}
 
 	private void printMenu(GarageMenu[] menu) {
 		for(GarageMenu item : menu) {
-			System.out.println(item.toString());
+			ConsoleManager.getInstance().printToConsole(item.toString(), true);
 		}
 	}
 	
@@ -40,23 +40,24 @@ public class GarageService {
 		do {
 			
 			this.printMenu(GarageMenu.values());
-			System.out.print("Choisi une action > ");
-			int action = req.nextInt();
+			ConsoleManager.getInstance().printToConsole("Choisi une action > ", false);
+			int action = ConsoleManager.getInstance().readUserInputInteger();
 			
 			if (handleMenuReq(GarageMenu.values(), action)) {
 				
 				if(action == 0) {
-					System.out.println("Merci d'être passer");
+					ConsoleManager.getInstance().printToConsole("Merci d'être passer", false);
+					// System.out.println("Merci d'être passer");
 					Exit = true;
 				}
 				if(action == 1) {
-					list(garage.getVehclePending(), true);
+					printList(garage.getVehclePending(), true);
 				}
 				if(action == 2) {
-					list(garage.getVehicleInProgress(), false);
+					printList(garage.getVehicleInProgress(), false);
 				}
 				if(action == 3) {
-					list(garage.getVehicleDone(),false);
+					printList(garage.getVehicleDone(),false);
 				}
 				
 			}
@@ -64,22 +65,26 @@ public class GarageService {
 
 	}
 	
+	private void printList(List<Vehicle> vehicles, Boolean option) {
+		ConsoleManager.getInstance().printLine();
+		list(vehicles, option);
+		ConsoleManager.getInstance().printLine();
+	}
+	
 	private void list(List<Vehicle> vehicles, Boolean option) {
 		if (!vehicles.isEmpty()) {
-			System.out.println("\r\n");
 			int id = 1;
 			for (Vehicle vehicle : vehicles) {
 				if (option) {
-					System.out.println(id + " - " + vehicle.toString());
+					ConsoleManager.getInstance().printToConsole(id + " - " + vehicle.toString(), true);
 					id++;
 				}
 				if(!option) {
-					System.out.println("> " + vehicle.toString());	
+					ConsoleManager.getInstance().printToConsole("> " + vehicle.toString(), true);
 				}
 			}
-			System.out.println("\r\n");
 		} else {
-			System.out.println("\r\n> Aucun vehicule n'a été trouvée\r\n");
+			ConsoleManager.getInstance().printToConsole("Aucun vehicule n'a été trouvée", true);
 		}
 	}
 }
