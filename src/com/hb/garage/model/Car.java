@@ -17,5 +17,10 @@ public class Car extends Vehicle{
 	public void setNumberOfDoors(int numberOfDoors) {
 		this.numberOfDoors = numberOfDoors;
 	}
-	
+
+    @Override
+    public String toString() {
+        return  this.superToString().substring(0, this.superToString().length() - 1) +
+                ", nbDoors=" + numberOfDoors + '}';
+    }
 }

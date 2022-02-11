@@ -35,4 +35,8 @@ public class Owner {
 		this.phoneNumber = phoneNumber;
 	}
 	
+    public String toString() {
+        return  "{firstName= " + this.firstName + ", lastName=" + this.lastName +
+                ", phoneNumber=" + this.phoneNumber + '}';
+    }
 }

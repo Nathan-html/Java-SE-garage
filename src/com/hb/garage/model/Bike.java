@@ -17,4 +17,10 @@ public class Bike extends Vehicle {
 	public void setNumberOfSeats(int numberOfSeats) {
 		this.numberOfSeats = numberOfSeats;
 	}
+	
+    @Override
+    public String toString() {
+        return  this.superToString().substring(0, this.superToString().length() - 1) +
+                ", numberOfSeats=" + numberOfSeats + '}';
+    }
 }

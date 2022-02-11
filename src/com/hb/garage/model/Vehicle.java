@@ -46,4 +46,10 @@ public abstract class Vehicle {
 		this.type = type;
 	}
 	
+    public String superToString() {
+        return  type +" { " +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", owner=" + owner.toString() + '}';
+    }
 }
